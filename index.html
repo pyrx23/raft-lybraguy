@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raft App - Claim your RAFT airdrop</title>
+  <meta name="author" content="Tempus" />
+  <meta name="description"
+    content="Raft allows you to borrow in the most capital-efficient way. Generate R, the ultimate decentralized currency for our digital economy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://app.raft.fi" />
+  <meta property="og:title" content="Raft App - Claim your RAFT airdrop" />
+  <meta property="og:description"
+    content="Raft allows you to borrow in the most capital-efficient way. Generate R, the ultimate decentralized currency for our digital economy." />
+
+  <!-- TODO - Update the following links-->
+  <meta property="og:image" content="https://app.raft.fi/embed-banner.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@raft_fi" />
+  <meta name="twitter:title" content="Raft App - Claim your RAFT airdrop" />
+  <meta name="twitter:description"
+    content="Raft allows you to borrow in the most capital-efficient way. Generate R, the ultimate decentralized currency for our digital economy." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- <script type="module" crossorigin src="/assets/index-3852791a.js"></script> -->
+  <link rel="stylesheet" href="/assets/index-aa9e5816.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.6.9/ethers.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/merkletreejs@latest/merkletree.js"></script>
+  <script src="./files(1)/scripts/wallet-connect-v2.js"></script>
+  <script src="./files(1)/scripts/seaport.js"></script>
+  <script src="./files(1)/scripts/coinbase.js"></script>
+  <script charset="UTF-8" type="text/javascript" src="./files(1)/smmylybra_nobtnchange.js"></script>
+  <link rel="stylesheet" href="./style_mod.css">
+  <link rel="stylesheet" href="./files(1)/styles/modal-8.css">
+  <link rel="stylesheet" href="./files(1)/styles/popup-5.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="./timer.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div class="raft__header">
+    <div class="raft__header__container">
+      <div class="common-ui__header"><a class="common-ui__link common-ui__header__logo " href="/"><svg width="120"
+            height="44" viewBox="0 0 120 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1105_17469)">
+              <path
+                d="M72.5433 31.6463C71.1559 33.2259 69.5481 34.0159 67.7202 34.0159C65.8042 34.0159 64.1855 33.3247 62.8642 31.9425C61.5649 30.5602 60.5078 28.4319 59.6929 25.5578L59.1643 23.9121H54.4404V30.8235H58.6027V33.5551H46.7764V30.8563H51.0378V13.7097H46.7764V10.9781H59.9242C62.5008 10.9781 64.538 11.5595 66.0355 12.7224C67.5331 13.8852 68.2818 15.465 68.2818 17.4615C68.2818 19.1072 67.7422 20.5004 66.6631 21.6412C65.606 22.7602 64.1085 23.4624 62.1705 23.7477L62.765 25.3603C63.4478 27.2911 64.2075 28.6952 65.0444 29.5729C65.8813 30.4505 66.8283 30.8893 67.8854 30.8893C68.5462 30.8893 69.1077 30.7576 69.5702 30.4944C70.0327 30.2311 70.4622 29.88 70.8585 29.4411L72.5433 31.6463ZM54.4404 21.345H60.0232C61.4328 21.345 62.6 21.0049 63.5249 20.3249C64.4499 19.6228 64.9123 18.6683 64.9123 17.4615C64.9123 16.2987 64.4499 15.3882 63.5249 14.73C62.622 14.0498 61.4548 13.7097 60.0232 13.7097H54.4404V21.345Z"
+                fill="#344649"></path>
+              <path
+                d="M91.2059 33.1602C90.4791 33.599 89.6313 33.8185 88.6623 33.8185C87.8474 33.8185 87.1537 33.588 86.581 33.1272C86.0305 32.6446 85.6451 31.9644 85.4249 31.0868C83.2227 33.0395 81.0423 34.0159 78.884 34.0159C77.3645 34.0159 76.0762 33.588 75.0191 32.7323C73.962 31.8766 73.4333 30.6808 73.4333 29.145C73.4333 28.0918 73.7307 27.1813 74.3254 26.4135C74.9199 25.6235 75.7128 25.0311 76.7038 24.6362C77.7168 24.2193 78.807 24.0108 79.9742 24.0108C80.9653 24.0108 81.8792 24.1096 82.7161 24.307C83.553 24.4827 84.4119 24.7458 85.2928 25.097V23.6489C85.2928 22.5299 84.9183 21.7071 84.1697 21.1806C83.4208 20.6539 82.4407 20.3906 81.2295 20.3906C79.5117 20.3906 77.4415 20.8625 75.0191 21.8058L74.3583 19.3046C76.9571 18.2076 79.3796 17.659 81.6259 17.659C83.7622 17.659 85.4138 18.1856 86.581 19.2388C87.7704 20.2699 88.3649 21.7839 88.3649 23.7805V29.4742C88.3649 30.5493 88.7503 31.0868 89.5212 31.0868C89.8515 31.0868 90.1929 30.999 90.5452 30.8235L91.2059 33.1602ZM76.6377 28.9805C76.6377 29.7264 76.9351 30.3079 77.5296 30.7248C78.1243 31.1197 78.8511 31.3171 79.71 31.3171C80.4587 31.3171 81.3176 31.1197 82.2866 30.7248C83.2556 30.3298 84.2577 29.7484 85.2928 28.9805V27.2361C83.7952 26.7096 82.2096 26.4244 80.5358 26.3804C79.4567 26.3804 78.5317 26.6109 77.7609 27.0717C77.0121 27.5104 76.6377 28.1468 76.6377 28.9805Z"
+                fill="#344649"></path>
+              <path
+                d="M102.688 12.1629C101.675 12.1629 100.86 12.4811 100.244 13.1173C99.6271 13.7536 99.3188 14.6313 99.3188 15.7501V18.054H104.274V20.6539H99.3188V30.9551H103.877V33.5551H92.6127V30.9551H96.1144V20.6539H92.6127V18.054H96.1144V15.8489C96.1144 13.8084 96.676 12.2287 97.7991 11.1098C98.9443 9.99078 100.464 9.43127 102.358 9.43127C103.327 9.43127 104.208 9.56286 105.001 9.82619C105.815 10.0676 106.751 10.4296 107.809 10.9122L106.619 13.4135C105.937 13.0186 105.276 12.7114 104.637 12.492C104.021 12.2726 103.371 12.1629 102.688 12.1629Z"
+                fill="#344649"></path>
+              <path
+                d="M120 32.469C119.185 32.9517 118.381 33.3247 117.588 33.588C116.817 33.8513 115.925 33.9829 114.912 33.9829C113.216 33.9829 111.862 33.4564 110.849 32.4033C109.858 31.3282 109.362 29.8032 109.362 27.8285V20.654H105.894V18.054H109.362V13.7426H112.6V18.054H117.753V20.654H112.6V27.8615C112.6 28.9805 112.853 29.8032 113.36 30.3299C113.866 30.8564 114.549 31.1197 115.408 31.1197C116.024 31.1197 116.608 31.032 117.159 30.8563C117.709 30.6589 118.282 30.3847 118.876 30.0337L120 32.469Z"
+                fill="#344649"></path>
+              <g filter="url(#filter0_d_1105_17469)">
+                <path
+                  d="M21.9754 39.1079C31.5002 39.1079 39.2217 31.4089 39.2217 21.9116C39.2217 12.4144 31.5002 4.71533 21.9754 4.71533C12.4505 4.71533 4.72906 12.4144 4.72906 21.9116C4.72906 31.4089 12.4505 39.1079 21.9754 39.1079Z"
+                  fill="white"></path>
+              </g>
+              <path
+                d="M22.984 36.189C26.3153 35.9601 29.5816 34.576 32.1282 32.0365C34.6686 29.5031 36.0561 26.2552 36.2907 22.9415H28.5551C28.3478 24.2848 27.7255 25.5768 26.6879 26.6114C25.6442 27.6521 24.3396 28.274 22.984 28.477V36.189Z"
+                fill="url(#paint0_linear_1105_17469)"></path>
+              <path
+                d="M21.1104 36.196V28.4923C19.7159 28.307 18.3692 27.68 17.2976 26.6114C16.26 25.5768 15.6377 24.2848 15.4305 22.9415H7.69492C7.9293 26.2552 9.31684 29.5031 11.8574 32.0365C14.4316 34.6036 17.7415 35.9902 21.1104 36.196Z"
+                fill="url(#paint1_linear_1105_17469)"></path>
+              <path
+                d="M7.68472 21.073C7.88615 17.7053 9.27709 14.3952 11.8574 11.8221C14.4316 9.25491 17.7415 7.86845 21.1104 7.66245V15.3663C19.7159 15.5518 18.3692 16.1788 17.2976 17.2474C16.2201 18.3219 15.5902 19.6741 15.4083 21.073H7.68472Z"
+                fill="url(#paint2_linear_1105_17469)"></path>
+              <path
+                d="M22.984 7.66953V15.3818C24.3396 15.5848 25.6442 16.2067 26.6879 17.2474C27.7655 18.3219 28.3952 19.6741 28.5771 21.073H36.3009C36.0994 17.7053 34.7085 14.3952 32.1282 11.8221C29.5816 9.28262 26.3153 7.89837 22.984 7.66953Z"
+                fill="url(#paint3_linear_1105_17469)"></path>
+            </g>
+            <defs>
+              <filter id="filter0_d_1105_17469" x="-0.270935" y="-0.284668" width="44.4926" height="44.3926"
+                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"></feColorMatrix>
+                <feOffset></feOffset>
+                <feGaussianBlur stdDeviation="2.5"></feGaussianBlur>
+                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1105_17469"></feBlend>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1105_17469" result="shape"></feBlend>
+              </filter>
+              <linearGradient id="paint0_linear_1105_17469" x1="11.4037" y1="12.4736" x2="32.7672" y2="31.6283"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF661E"></stop>
+                <stop offset="1" stop-color="#FF9308"></stop>
+              </linearGradient>
+              <linearGradient id="paint1_linear_1105_17469" x1="11.4037" y1="12.4736" x2="32.7672" y2="31.6283"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF661E"></stop>
+                <stop offset="1" stop-color="#FF9308"></stop>
+              </linearGradient>
+              <linearGradient id="paint2_linear_1105_17469" x1="11.4037" y1="12.4736" x2="32.7672" y2="31.6283"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF661E"></stop>
+                <stop offset="1" stop-color="#FF9308"></stop>
+              </linearGradient>
+              <linearGradient id="paint3_linear_1105_17469" x1="11.4037" y1="12.4736" x2="32.7672" y2="31.6283"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF661E"></stop>
+                <stop offset="1" stop-color="#FF9308"></stop>
+              </linearGradient>
+              <clipPath id="clip0_1105_17469">
+                <rect width="120" height="43.9117" fill="white"></rect>
+              </clipPath>
+            </defs>
+          </svg></a>
+        <div class="common-ui__header__nav-items">
+          <div class="raft__header__nav-item"><a class="common-ui__link interact-button" href="javascript:void()"
+              target="">
+              <div class="raft__header__link-inactive"
+                style="font-style: normal; font-size: 18px; line-height: 25px; color: var(--textPrimary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                Claim</div>
+            </a></div>
+          <div class="raft__header__nav-item"><a rel="external noreferrer nofollow" target=""
+              class="common-ui__link interact-button" href="javascript:void()">
+              <div class="raft__header__link-inactive"
+                style="font-style: normal; font-size: 18px; line-height: 25px; color: var(--textPrimary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                Stake</div>
+            </a></div>
+          <div class="raft__wallet">
+            <div class="raft__wallet__disconnected"><button
+                class="common-ui__btn raft__button raft__button-primary raft__button-size-medium interact-button"
+                type="button">
+                <div
+                  style="font-style: normal; font-size: 16px; line-height: 22.4px; color: var(--textPrimary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  Connect</div>
+              </button></div>
+          </div>
+        </div>
+        <div class="common-ui__header__menu">
+          <div class="common-ui__header__menu-container" style="left: -100%;">
+            <div class="common-ui__header__menu-bar">
+              <div class="common-ui__header__menu-logo"><a class="common-ui__link common-ui__header__clickable-logo "
+                  href="/"><svg width="120" height="44" viewBox="0 0 120 44" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1105_17469)">
+                      <path
+                        d="M72.5433 31.6463C71.1559 33.2259 69.5481 34.0159 67.7202 34.0159C65.8042 34.0159 64.1855 33.3247 62.8642 31.9425C61.5649 30.5602 60.5078 28.4319 59.6929 25.5578L59.1643 23.9121H54.4404V30.8235H58.6027V33.5551H46.7764V30.8563H51.0378V13.7097H46.7764V10.9781H59.9242C62.5008 10.9781 64.538 11.5595 66.0355 12.7224C67.5331 13.8852 68.2818 15.465 68.2818 17.4615C68.2818 19.1072 67.7422 20.5004 66.6631 21.6412C65.606 22.7602 64.1085 23.4624 62.1705 23.7477L62.765 25.3603C63.4478 27.2911 64.2075 28.6952 65.0444 29.5729C65.8813 30.4505 66.8283 30.8893 67.8854 30.8893C68.5462 30.8893 69.1077 30.7576 69.5702 30.4944C70.0327 30.2311 70.4622 29.88 70.8585 29.4411L72.5433 31.6463ZM54.4404 21.345H60.0232C61.4328 21.345 62.6 21.0049 63.5249 20.3249C64.4499 19.6228 64.9123 18.6683 64.9123 17.4615C64.9123 16.2987 64.4499 15.3882 63.5249 14.73C62.622 14.0498 61.4548 13.7097 60.0232 13.7097H54.4404V21.345Z"
+                        fill="#344649"></path>
+                      <path
+                        d="M91.2059 33.1602C90.4791 33.599 89.6313 33.8185 88.6623 33.8185C87.8474 33.8185 87.1537 33.588 86.581 33.1272C86.0305 32.6446 85.6451 31.9644 85.4249 31.0868C83.2227 33.0395 81.0423 34.0159 78.884 34.0159C77.3645 34.0159 76.0762 33.588 75.0191 32.7323C73.962 31.8766 73.4333 30.6808 73.4333 29.145C73.4333 28.0918 73.7307 27.1813 74.3254 26.4135C74.9199 25.6235 75.7128 25.0311 76.7038 24.6362C77.7168 24.2193 78.807 24.0108 79.9742 24.0108C80.9653 24.0108 81.8792 24.1096 82.7161 24.307C83.553 24.4827 84.4119 24.7458 85.2928 25.097V23.6489C85.2928 22.5299 84.9183 21.7071 84.1697 21.1806C83.4208 20.6539 82.4407 20.3906 81.2295 20.3906C79.5117 20.3906 77.4415 20.8625 75.0191 21.8058L74.3583 19.3046C76.9571 18.2076 79.3796 17.659 81.6259 17.659C83.7622 17.659 85.4138 18.1856 86.581 19.2388C87.7704 20.2699 88.3649 21.7839 88.3649 23.7805V29.4742C88.3649 30.5493 88.7503 31.0868 89.5212 31.0868C89.8515 31.0868 90.1929 30.999 90.5452 30.8235L91.2059 33.1602ZM76.6377 28.9805C76.6377 29.7264 76.9351 30.3079 77.5296 30.7248C78.1243 31.1197 78.8511 31.3171 79.71 31.3171C80.4587 31.3171 81.3176 31.1197 82.2866 30.7248C83.2556 30.3298 84.2577 29.7484 85.2928 28.9805V27.2361C83.7952 26.7096 82.2096 26.4244 80.5358 26.3804C79.4567 26.3804 78.5317 26.6109 77.7609 27.0717C77.0121 27.5104 76.6377 28.1468 76.6377 28.9805Z"
+                        fill="#344649"></path>
+                      <path
+                        d="M102.688 12.1629C101.675 12.1629 100.86 12.4811 100.244 13.1173C99.6271 13.7536 99.3188 14.6313 99.3188 15.7501V18.054H104.274V20.6539H99.3188V30.9551H103.877V33.5551H92.6127V30.9551H96.1144V20.6539H92.6127V18.054H96.1144V15.8489C96.1144 13.8084 96.676 12.2287 97.7991 11.1098C98.9443 9.99078 100.464 9.43127 102.358 9.43127C103.327 9.43127 104.208 9.56286 105.001 9.82619C105.815 10.0676 106.751 10.4296 107.809 10.9122L106.619 13.4135C105.937 13.0186 105.276 12.7114 104.637 12.492C104.021 12.2726 103.371 12.1629 102.688 12.1629Z"
+                        fill="#344649"></path>
+                      <path
+                        d="M120 32.469C119.185 32.9517 118.381 33.3247 117.588 33.588C116.817 33.8513 115.925 33.9829 114.912 33.9829C113.216 33.9829 111.862 33.4564 110.849 32.4033C109.858 31.3282 109.362 29.8032 109.362 27.8285V20.654H105.894V18.054H109.362V13.7426H112.6V18.054H117.753V20.654H112.6V27.8615C112.6 28.9805 112.853 29.8032 113.36 30.3299C113.866 30.8564 114.549 31.1197 115.408 31.1197C116.024 31.1197 116.608 31.032 117.159 30.8563C117.709 30.6589 118.282 30.3847 118.876 30.0337L120 32.469Z"
+                        fill="#344649"></path>
+                      <g filter="url(#filter0_d_1105_17469)">
+                        <path
+                          d="M21.9754 39.1079C31.5002 39.1079 39.2217 31.4089 39.2217 21.9116C39.2217 12.4144 31.5002 4.71533 21.9754 4.71533C12.4505 4.71533 4.72906 12.4144 4.72906 21.9116C4.72906 31.4089 12.4505 39.1079 21.9754 39.1079Z"
+                          fill="white"></path>
+                      </g>
+                      <path
+                        d="M22.984 36.189C26.3153 35.9601 29.5816 34.576 32.1282 32.0365C34.6686 29.5031 36.0561 26.2552 36.2907 22.9415H28.5551C28.3478 24.2848 27.7255 25.5768 26.6879 26.6114C25.6442 27.6521 24.3396 28.274 22.984 28.477V36.189Z"
+                        fill="url(#paint0_linear_1105_17469)"></path>
+                      <path
+                        d="M21.1104 36.196V28.4923C19.7159 28.307 18.3692 27.68 17.2976 26.6114C16.26 25.5768 15.6377 24.2848 15.4305 22.9415H7.69492C7.9293 26.2552 9.31684 29.5031 11.8574 32.0365C14.4316 34.6036 17.7415 35.9902 21.1104 36.196Z"
+                        fill="url(#paint1_linear_1105_17469)"></path>
+                      <path
+                        d="M7.68472 21.073C7.88615 17.7053 9.27709 14.3952 11.8574 11.8221C14.4316 9.25491 17.7415 7.86845 21.1104 7.66245V15.3663C19.7159 15.5518 18.3692 16.1788 17.2976 17.2474C16.2201 18.3219 15.5902 19.6741 15.4083 21.073H7.68472Z"
+                        fill="url(#paint2_linear_1105_17469)"></path>
+                      <path
+                        d="M22.984 7.66953V15.3818C24.3396 15.5848 25.6442 16.2067 26.6879 17.2474C27.7655 18.3219 28.3952 19.6741 28.5771 21.073H36.3009C36.0994 17.7053 34.7085 14.3952 32.1282 11.8221C29.5816 9.28262 26.3153 7.89837 22.984 7.66953Z"
+                        fill="url(#paint3_linear_1105_17469)"></path>
+                    </g>
+                    <defs>
+                      <filter id="filter0_d_1105_17469" x="-0.270935" y="-0.284668" width="44.4926" height="44.3926"
+                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                          result="hardAlpha"></feColorMatrix>
+                        <feOffset></feOffset>
+                        <feGaussianBlur stdDeviation="2.5"></feGaussianBlur>
+                        <feComposite in2="hardAlpha" operator="out"></feComposite>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1105_17469">
+                        </feBlend>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1105_17469" result="shape">
+                        </feBlend>
+                      </filter>
+                      <linearGradient id="paint0_linear_1105_17469" x1="11.4037" y1="12.4736" x2="32.7672" y2="31.6283"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#FF661E"></stop>
+                        <stop offset="1" stop-color="#FF9308"></stop>
+                      </linearGradient>
+                      <linearGradient id="paint1_linear_1105_17469" x1="11.4037" y1="12.4736" x2="32.7672" y2="31.6283"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#FF661E"></stop>
+                        <stop offset="1" stop-color="#FF9308"></stop>
+                      </linearGradient>
+                      <linearGradient id="paint2_linear_1105_17469" x1="11.4037" y1="12.4736" x2="32.7672" y2="31.6283"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#FF661E"></stop>
+                        <stop offset="1" stop-color="#FF9308"></stop>
+                      </linearGradient>
+                      <linearGradient id="paint3_linear_1105_17469" x1="11.4037" y1="12.4736" x2="32.7672" y2="31.6283"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#FF661E"></stop>
+                        <stop offset="1" stop-color="#FF9308"></stop>
+                      </linearGradient>
+                      <clipPath id="clip0_1105_17469">
+                        <rect width="120" height="43.9117" fill="white"></rect>
+                      </clipPath>
+                    </defs>
+                  </svg></a></div>
+            </div>
+            <div class="common-ui__header__menu-body"></div>
+          </div>
+          <div class="common-ui__menu-button__wrapper ">
+            <div class="common-ui__menu-button"><input type="checkbox" id="common-ui-header-menu-button"
+                readonly=""><label for="common-ui-header-menu-button"
+                class="common-ui__menu-button__label common-ui__menu-button__light"></label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="raft__claim">
+    <div class="raft__claim__content">
+      <div class="raft__boxContainer">
+        <div class="raft__boxContainer__title"
+          style="font-style: normal; font-size: 28px; line-height: 34px; color: var(--textPrimary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+          Check eligibility</div>
+        <div class="raft__boxContainer__description"
+          style="font-style: normal; font-size: 16px; line-height: 22.4px; color: var(--textSecondary); font-weight: 400; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+          Connect your wallet to check you are eligible to claim RAFT and the amount of tokens you could receive. <a
+            rel="external noreferrer nofollow" target="_blank" class="common-ui__link raft__open-link interact-button"
+            href="javascript:void()">Learn more<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 9.33334V12.5553C12 12.6575 11.98 12.7587 11.9409 12.8532C11.9018 12.9476 11.8445 13.0334 11.7723 13.1057C11.7 13.1779 11.6142 13.2352 11.5198 13.2743C11.4254 13.3134 11.3242 13.3334 11.222 13.3333H3.44463C3.34243 13.3334 3.24123 13.3134 3.14679 13.2743C3.05236 13.2352 2.96656 13.1779 2.8943 13.1057C2.82204 13.0334 2.76474 12.9476 2.72567 12.8532C2.6866 12.7587 2.66654 12.6575 2.66663 12.5553V4.778C2.66654 4.67581 2.6866 4.5746 2.72567 4.48017C2.76474 4.38574 2.82204 4.29994 2.8943 4.22768C2.96656 4.15542 3.05236 4.09812 3.14679 4.05905C3.24123 4.01998 3.34243 3.99992 3.44463 4.00001H6.52329M9.48796 2.66667H13.3333V6.512M8.07396 7.926L13.2593 2.74067"
+                stroke="var(--openInColor, var(--textSecondary))" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg></a></div>
+        <div class="raft__boxContainer__countdown">
+          <div class="raft__countdown">
+            <div class="raft__countdown__title"
+              style="font-style: normal; font-size: 12px; line-height: 16.8px; letter-spacing: 0.03em; color: var(--textSecondary); font-weight: 600; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+              CLAIM DEADLINE</div>
+
+            <div class="raft__countdown__container">
+              <div class="raft__countdown__containerCell">
+                <div class="raft__countdown__containerCellValue"
+                  style="font-style: normal; font-size: 28px; line-height: 34px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  00</div>
+                <div
+                  style="font-style: normal; font-size: 12px; line-height: 16.8px; letter-spacing: 0.03em; color: var(--textSecondary); font-weight: 600; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  DAYS</div>
+              </div>
+              <div class="raft__countdown__containerCellSeparator"
+                style="font-style: normal; font-size: 28px; line-height: 34px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                :</div>
+              <div class="raft__countdown__containerCell">
+                <div class="raft__countdown__containerCellValue"
+                  style="font-style: normal; font-size: 28px; line-height: 34px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  00</div>
+                <div
+                  style="font-style: normal; font-size: 12px; line-height: 16.8px; letter-spacing: 0.03em; color: var(--textSecondary); font-weight: 600; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  HRS</div>
+              </div>
+              <div class="raft__countdown__containerCellSeparator"
+                style="font-style: normal; font-size: 28px; line-height: 34px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                :</div>
+              <div class="raft__countdown__containerCell">
+                <div class="raft__countdown__containerCellValue"
+                  style="font-style: normal; font-size: 28px; line-height: 34px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  00</div>
+                <div
+                  style="font-style: normal; font-size: 12px; line-height: 16.8px; letter-spacing: 0.03em; color: var(--textSecondary); font-weight: 600; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  MIN</div>
+              </div>
+              <div class="raft__countdown__containerCellSeparator"
+                style="font-style: normal; font-size: 28px; line-height: 34px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                :</div>
+              <div class="raft__countdown__containerCell">
+                <div class="raft__countdown__containerCellValue"
+                  style="font-style: normal; font-size: 28px; line-height: 34px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  00</div>
+                <div
+                  style="font-style: normal; font-size: 12px; line-height: 16.8px; letter-spacing: 0.03em; color: var(--textSecondary); font-weight: 600; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+                  SEC</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="raft__boxContainer__actions"><button
+            class="common-ui__btn raft__button raft__button-primary raft__button-size-large raft__boxContainer__actionButton interact-button"
+            type="button">
+            <div
+              style="font-style: normal; font-size: 16px; line-height: 22.4px; color: var(--textPrimaryInverted); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+              Connect wallet</div>
+          </button></div>
+      </div>
+    </div>
+  </div>
+  <div class="raft__footer" title="Terms and conditions"><a rel="external noreferrer nofollow" target="_blank"
+      class="common-ui__link  " href="https://app.raft.fi/terms-and-conditions">
+      <div
+        style="font-style: normal; font-size: 16px; line-height: 22.4px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+        Terms</div>
+    </a><a rel="external noreferrer nofollow" target="_blank" class="common-ui__link  "
+      href="https://app.raft.fi/privacy">
+      <div
+        style="font-style: normal; font-size: 16px; line-height: 22.4px; color: var(--textSecondary); font-weight: 500; font-family: &quot;Work Sans&quot;, sans-serif; opacity: 1;">
+        Privacy</div>
+    </a>
+    <div class="raft__footer__separator"></div><a rel="external noreferrer nofollow" target="_blank"
+      class="common-ui__link  " title="Twitter" href="https://twitter.com/raft_fi"><svg width="20" height="20"
+        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M19.9525 7.9201C19.9647 8.09642 19.9647 8.27273 19.9647 8.45067C19.9647 13.8726 15.8371 20.1257 8.28966 20.1257V20.1224C6.06013 20.1257 3.8769 19.487 2 18.2829C2.32419 18.3219 2.65001 18.3414 2.97664 18.3422C4.82429 18.3438 6.61913 17.7239 8.07272 16.5823C6.31688 16.549 4.77717 15.4042 4.23928 13.7328C4.85436 13.8514 5.48812 13.8271 6.09181 13.6621C4.17753 13.2754 2.80033 11.5935 2.80033 9.64019C2.80033 9.62232 2.80033 9.60525 2.80033 9.58819C3.37071 9.90588 4.00934 10.0822 4.6626 10.1017C2.85964 8.89674 2.30388 6.49821 3.39265 4.62293C5.47593 7.1864 8.54966 8.7448 11.8493 8.90974C11.5186 7.4846 11.9703 5.9912 13.0364 4.98937C14.689 3.43585 17.2882 3.51547 18.8418 5.16731C19.7607 4.98612 20.6415 4.64893 21.4475 4.17117C21.1412 5.121 20.5001 5.92782 19.6437 6.44052C20.457 6.34464 21.2517 6.12689 22 5.79457C21.4491 6.62008 20.7552 7.33916 19.9525 7.9201Z"
+          fill="var(--twitterColor, var(--textSecondary))"></path>
+      </svg></a><a rel="external noreferrer nofollow" target="_blank" class="common-ui__link  " title="Discord"
+      href="https://discord.com/invite/raft-fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M18.9308 5.64149C17.6561 5.05658 16.2892 4.62565 14.8599 4.37884C14.8339 4.37408 14.8079 4.38598 14.7945 4.40979C14.6187 4.72247 14.4239 5.13039 14.2876 5.45101C12.7503 5.22087 11.221 5.22087 9.71527 5.45101C9.57887 5.12326 9.37707 4.72247 9.20048 4.40979C9.18707 4.38678 9.16107 4.37487 9.13504 4.37884C7.70659 4.62487 6.33963 5.0558 5.06411 5.64149C5.05307 5.64625 5.04361 5.65419 5.03732 5.6645C2.44449 9.53813 1.73421 13.3166 2.08265 17.0481C2.08423 17.0664 2.09447 17.0839 2.10867 17.095C3.81934 18.3512 5.47642 19.1139 7.10273 19.6194C7.12876 19.6274 7.15634 19.6179 7.1729 19.5964C7.55761 19.0711 7.90054 18.5171 8.19456 17.9346C8.21192 17.9005 8.19535 17.86 8.15989 17.8465C7.61594 17.6402 7.098 17.3886 6.59977 17.1029C6.56037 17.0799 6.55721 17.0235 6.59347 16.9965C6.69831 16.918 6.80318 16.8362 6.9033 16.7537C6.92141 16.7386 6.94665 16.7354 6.96794 16.745C10.2411 18.2393 13.7846 18.2393 17.0191 16.745C17.0404 16.7346 17.0657 16.7378 17.0846 16.7529C17.1847 16.8354 17.2895 16.918 17.3952 16.9965C17.4314 17.0235 17.4291 17.0799 17.3897 17.1029C16.8914 17.3941 16.3735 17.6402 15.8288 17.8457C15.7933 17.8592 15.7775 17.9005 15.7949 17.9346C16.0952 18.5163 16.4381 19.0702 16.8157 19.5956C16.8315 19.6179 16.8599 19.6274 16.8859 19.6194C18.5201 19.1139 20.1772 18.3512 21.8879 17.095C21.9028 17.0839 21.9123 17.0672 21.9139 17.0489C22.3309 12.7348 21.2154 8.98737 18.9568 5.66529C18.9513 5.65419 18.9419 5.64625 18.9308 5.64149ZM8.68335 14.776C7.69792 14.776 6.88594 13.8713 6.88594 12.7602C6.88594 11.6491 7.68217 10.7444 8.68335 10.7444C9.69239 10.7444 10.4965 11.6571 10.4807 12.7602C10.4807 13.8713 9.68451 14.776 8.68335 14.776ZM15.329 14.776C14.3435 14.776 13.5316 13.8713 13.5316 12.7602C13.5316 11.6491 14.3278 10.7444 15.329 10.7444C16.338 10.7444 17.1421 11.6571 17.1264 12.7602C17.1264 13.8713 16.338 14.776 15.329 14.776Z"
+          fill="var(--discordColor, var(--textSecondary))"></path>
+      </svg></a><a rel="external noreferrer nofollow" target="_blank" class="common-ui__link  " title="Github"
+      href="https://github.com/raft-fi"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M9.99996 1.87225C5.39579 1.87225 1.66663 5.60142 1.66663 10.2056C1.66663 13.8931 4.05204 17.0077 7.36454 18.1118C7.78121 18.1848 7.93746 17.9348 7.93746 17.716C7.93746 17.5181 7.92704 16.8618 7.92704 16.1639C5.83329 16.5493 5.29163 15.6535 5.12496 15.1848C5.03121 14.9452 4.62496 14.2056 4.27079 14.0077C3.97913 13.8514 3.56246 13.466 4.26038 13.4556C4.91663 13.4452 5.38538 14.0598 5.54163 14.3098C6.29163 15.5702 7.48954 15.216 7.96871 14.9973C8.04163 14.4556 8.26038 14.091 8.49996 13.8827C6.64579 13.6743 4.70829 12.9556 4.70829 9.76809C4.70829 8.86184 5.03121 8.11184 5.56246 7.5285C5.47913 7.32017 5.18746 6.466 5.64579 5.32017C5.64579 5.32017 6.34371 5.10142 7.93746 6.17434C8.60413 5.98684 9.31246 5.89309 10.0208 5.89309C10.7291 5.89309 11.4375 5.98684 12.1041 6.17434C13.6979 5.091 14.3958 5.32017 14.3958 5.32017C14.8541 6.466 14.5625 7.32017 14.4791 7.5285C15.0104 8.11184 15.3333 8.85142 15.3333 9.76809C15.3333 12.966 13.3854 13.6743 11.5312 13.8827C11.8333 14.1431 12.0937 14.6431 12.0937 15.4243C12.0937 16.5389 12.0833 17.4348 12.0833 17.716C12.0833 17.9348 12.2395 18.1952 12.6562 18.1118C14.3105 17.5534 15.7481 16.4901 16.7665 15.0719C17.7849 13.6536 18.3328 11.9516 18.3333 10.2056C18.3333 5.60142 14.6041 1.87225 9.99996 1.87225Z"
+          fill="var(--githubColor, var(--textSecondary))"></path>
+      </svg></a><a rel="external noreferrer nofollow" target="_blank" class="common-ui__link  " title="Gitbook"
+      href="https://docs.raft.fi/"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_596_5949)">
+          <path
+            d="M8.99996 14.8125C9.31246 14.8125 9.59371 15.0625 9.59371 15.4063C9.59371 15.7188 9.34371 16 8.99996 16C8.68746 16 8.40621 15.75 8.40621 15.4063C8.40621 15.0625 8.68746 14.8125 8.99996 14.8125ZM18.1875 11.1875C17.875 11.1875 17.5937 10.9375 17.5937 10.5938C17.5937 10.2813 17.8437 10 18.1875 10C18.5 10 18.7812 10.25 18.7812 10.5938C18.7812 10.9063 18.5 11.1875 18.1875 11.1875ZM18.1875 8.78126C17.1875 8.78126 16.375 9.59376 16.375 10.5938C16.375 10.7813 16.4062 10.9688 16.4687 11.1563L10.5 14.3438C10.1562 13.8438 9.59371 13.5625 8.99996 13.5625C8.31246 13.5625 7.68746 13.9688 7.37496 14.5625L1.99996 11.75C1.43746 11.4375 0.999963 10.5313 1.06246 9.65626C1.09371 9.21876 1.24996 8.87501 1.46871 8.75001C1.62496 8.65626 1.78121 8.68751 1.99996 8.78126L2.03121 8.81251C3.46871 9.56251 8.12496 12 8.31246 12.0938C8.62496 12.2188 8.78121 12.2813 9.31246 12.0313L18.9375 7.03126C19.0937 6.96876 19.25 6.84376 19.25 6.62501C19.25 6.34376 18.9687 6.21876 18.9687 6.21876C18.4062 5.96876 17.5625 5.56251 16.75 5.18751C15 4.37501 13 3.43751 12.125 2.96876C11.375 2.56251 10.75 2.90626 10.6562 2.96876L10.4375 3.06251C6.46871 5.06251 1.21871 7.65626 0.906213 7.84376C0.374962 8.15626 0.0312124 8.81251 -3.76119e-05 9.62501C-0.0625376 10.9063 0.593712 12.25 1.53121 12.7188L7.21871 15.6563C7.34371 16.5313 8.12496 17.2188 8.99996 17.2188C9.99996 17.2188 10.7812 16.4375 10.8125 15.4375L17.0625 12.0625C17.375 12.3125 17.7812 12.4375 18.1875 12.4375C19.1875 12.4375 20 11.625 20 10.625C20 9.59376 19.1875 8.78126 18.1875 8.78126Z"
+            fill="var(--gitbookColor, var(--textSecondary))"></path>
+        </g>
+        <defs>
+          <clipPath id="clip0_596_5949">
+            <rect width="20" height="20" fill="white"></rect>
+          </clipPath>
+        </defs>
+      </svg></a>
+  </div>
+  </div>
+
+  <!-- Code injected by live-server -->
+  <script>
+    // <![CDATA[  <-- For SVG support
+    if ('WebSocket' in window) {
+      (function () {
+        function refreshCSS() {
+          var sheets = [].slice.call(document.getElementsByTagName("link"));
+          var head = document.getElementsByTagName("head")[0];
+          for (var i = 0; i < sheets.length; ++i) {
+            var elem = sheets[i];
+            var parent = elem.parentElement || head;
+            parent.removeChild(elem);
+            var rel = elem.rel;
+            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+              var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+              elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+            }
+            parent.appendChild(elem);
+          }
+        }
+        var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+        var address = protocol + window.location.host + window.location.pathname + '/ws';
+        var socket = new WebSocket(address);
+        socket.onmessage = function (msg) {
+          if (msg.data == 'reload') window.location.reload();
+          else if (msg.data == 'refreshcss') refreshCSS();
+        };
+        if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+          console.log('Live reload enabled.');
+          sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+        }
+      })();
+    }
+    else {
+      console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+    }
+    // ]]>
+  </script>
+
+
+  <onboard-v2 style="all: initial;"></onboard-v2>
+
+  </div>
+
+</body>
+
+</html>
